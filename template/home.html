@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.box{
+background-color: #c7bb16;
+}
+#del{
+    background-color: red;
+    margin-left: 30px;
+}
+li:last-child {
+    border-bottom: none;
+}
+</style>
+<body>
+    <div class="container">
+        <h1>To-Do App</h1>
+        <input type="text" id="taskInput" placeholder="Enter a new task">
+        <button id="addTaskBtn" onclick="addtask()">Add Task</button>
+        <div class="box">
+            <ul id="taskList">
+            <!-- <button id="del">delete</button> -->
+            <!-- Tasks will be added dynamically here -->
+        </ul>
+    </div></div>
+
+    <script>
+       document.addEventListener("DOMContentLoaded", function () {
+    const taskInput = document.getElementById("taskInput");
+    const addTaskBtn = document.getElementById("addTaskBtn");
+    const taskList = document.getElementById("taskList");
+
+    addTaskBtn.addEventListener("click", function () {
+        const taskText = taskInput.value.trim();
+        if (taskText !== "") {
+            const taskItem = document.createElement("li");
+            taskItem.innerHTML = `
+                <span>${taskText}</span>
+                <button class="deleteBtn">Delete</button>
+            `;
+            taskList.appendChild(taskItem);
+            taskInput.value = "";
+
+            const deleteBtn = taskItem.querySelector(".deleteBtn");
+            deleteBtn.addEventListener("click", function () {
+                taskList.removeChild(taskItem);
+            });
+        }
+    });
+});
+
+    </script>
+</body>
+</html>
